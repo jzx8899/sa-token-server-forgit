@@ -42,12 +42,27 @@
         <artifactId>sa-token-sso</artifactId>
         <version>${sa-token.version}</version>
     </dependency>
-
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.49</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.4.1</version>
+        </dependency>
     <!-- Http请求工具（在模式三的单点注销功能下用到，如不需要可以注释掉） -->
     <dependency>
         <groupId>com.dtflys.forest</groupId>
         <artifactId>forest-spring-boot-starter</artifactId>
         <version>1.5.26</version>
     </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.4</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>

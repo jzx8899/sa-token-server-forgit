@@ -5,10 +5,14 @@ import cn.dev33.satoken.sso.SaSsoProcessor;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.util.SaResult;
 import com.dtflys.forest.Forest;
+import com.yk.bean.TbUser;
+import com.yk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * Sa-Token-SSO Server端 Controller 
@@ -17,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @RestController
 public class SsoServerController {
+	@Autowired
+	private UserService userService;
 
 	/*
 	 * SSO-Server端：处理所有SSO相关请求 
@@ -41,10 +47,14 @@ public class SsoServerController {
 		
 		// 配置：登录处理函数 
 		sso.setDoLoginHandle((name, pwd) -> {
-			// 此处仅做模拟登录，真实环境应该查询数据进行登录 
-			if("sa".equals(name) && "123456".equals(pwd)) {
-				StpUtil.login(10001);
-				return SaResult.ok("登录成功！").setData(StpUtil.getTokenValue());
+			// 此处仅做模拟登录，真实环境应该查询数据进行登录
+			List<TbUser> tbUserList = userService.queryByName(name);
+			System.out.println("tbUserList = " + tbUserList);
+			for (TbUser tbUser : tbUserList) {
+				if(tbUser.getName().equals(name) && tbUser.getPassword().equals(pwd)) {
+					StpUtil.login(tbUser.getId());
+					return SaResult.ok("登录成功！").setData(StpUtil.getTokenValue());
+				}
 			}
 			return SaResult.error("登录失败！");
 		});
