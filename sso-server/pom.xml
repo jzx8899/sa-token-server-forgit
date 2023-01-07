@@ -52,12 +52,16 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.4.1</version>
         </dependency>
-    <!-- Http请求工具（在模式三的单点注销功能下用到，如不需要可以注释掉） -->
-    <dependency>
-        <groupId>com.dtflys.forest</groupId>
-        <artifactId>forest-spring-boot-starter</artifactId>
-        <version>1.5.26</version>
-    </dependency>
+        <!-- Sa-Token 插件：整合redis (使用jackson序列化方式) -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-dao-redis-jackson</artifactId>
+            <version>${sa-token.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

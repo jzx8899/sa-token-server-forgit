@@ -4,7 +4,6 @@ import cn.dev33.satoken.config.SaSsoConfig;
 import cn.dev33.satoken.sso.SaSsoProcessor;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.dev33.satoken.util.SaResult;
-import com.dtflys.forest.Forest;
 import com.yk.bean.TbUser;
 import com.yk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +41,10 @@ public class SsoServerController {
 		
 		// 配置：未登录时返回的View 
 		sso.setNotLoginView(() -> {
-			return new ModelAndView("sa-login.html");
+			String msg = "当前会话在SSO-Server端尚未登录，请先访问"
+					+ "<a href='/sso/doLogin?name=sa&pwd=123456' target='_blank'> doLogin登录 </a>"
+					+ "进行登录之后，刷新页面开始授权";
+			return msg;
 		});
 		
 		// 配置：登录处理函数 
@@ -59,7 +61,7 @@ public class SsoServerController {
 			return SaResult.error("登录失败！");
 		});
 		
-		// 配置 Http 请求处理器 （在模式三的单点注销功能下用到，如不需要可以注释掉） 
+/*		// 配置 Http 请求处理器 （在模式三的单点注销功能下用到，如不需要可以注释掉）
 		sso.setSendHttp(url -> {
 			try {
 				// 发起 http 请求 
@@ -69,7 +71,7 @@ public class SsoServerController {
 				e.printStackTrace();
 				return null;
 			}
-		});
+		});*/
 	}
 	
 }
