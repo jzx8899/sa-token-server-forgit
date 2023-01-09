@@ -42,7 +42,7 @@ public class SsoServerController {
 		// 配置：未登录时返回的View 
 		sso.setNotLoginView(() -> {
 			String msg = "当前会话在SSO-Server端尚未登录，请先访问"
-					+ "<a href='/sso/doLogin?name=sa&pwd=123456' target='_blank'> doLogin登录 </a>"
+					+ "<a href='/sso/doLogin?name=aaa&pwd=123' target='_blank'> doLogin登录 </a>"
 					+ "进行登录之后，刷新页面开始授权";
 			return msg;
 		});
