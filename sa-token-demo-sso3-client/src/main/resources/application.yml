@@ -21,7 +21,7 @@ sa-token:
         # SSO-Server端 查询userinfo地址 
         userinfo-url: http://sa-sso-server.com:9000/sso/userinfo
         
-#spring:
+spring:
 #    # 配置 Redis 连接 （此处与SSO-Server端连接不同的Redis）
 #    redis:
 #        # Redis数据库索引
