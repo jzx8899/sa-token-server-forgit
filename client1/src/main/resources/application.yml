@@ -27,3 +27,6 @@ sa-token:
     password:
     # 连接超时时间
     timeout: 10s
+SaTokenConf:
+  addInclude: /**
+  addExclude: /sso/*,/favicon.ico
